@@ -26,7 +26,7 @@ This project demonstrates automated testing of the e-commerce (https://new.bakue
 2. Navigate to the project directory:
 
    ```bash
-   cd <project-folder>
+   cd AFEA_group_technical_task
    ```
 
 3. Install dependencies:
