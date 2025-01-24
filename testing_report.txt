@@ -1,0 +1,242 @@
+QA Automation Testing Report: E-commerce Checkout Process
+
+Prepared by: Teymur Nasirli
+Date: 24.01.2025
+Framework Used: Cypress 14.0.0
+Tested Website: https://new.bakuelectronics.az/
+
+   
+Objective:
+
+   The primary goal of this project is to automate the testing of the checkout process for an e-commerce website. 
+   The tests ensure the key functionalities of the shopping cart and checkout process are functioning as expected and provide a seamless experience for the user.
+
+
+Test Scenarios:
+
+   The following scenarios were automated as per the requirements:
+
+   1. Adding a Product to the Shopping Cart
+   2. Removing a Product from the Shopping Cart
+   3. Updating the Quantity of a Product in the Shopping Cart
+   4. Proceeding to Checkout Page
+   5. Completing a Purchase During Checkout
+   6. Failing a Purchase During Checkout
+
+
+Tools and Environment:
+
+   - Automation Framework: Cypress 14.0.0
+   - Programming Language: JavaScript (TypeScript)
+   - Test Execution Mode: Headless browser (Electron 130)
+   - Test Website: https://new.bakuelectronics.az/
+   - OS: Windows 11 Home | win32 (10.0.22631) 
+   - Browser Version: Electron (default in Cypress)
+
+
+Scope of Testing:
+
+   In-Scope:
+
+      Adding products to the cart
+
+      Removing products from the cart
+
+      Updating product quantities
+
+      Navigating to the checkout page
+
+      Completing an order with valid and invalid data
+
+   Out-of-Scope:
+
+      Backend payment gateway validation
+
+      Performance testing
+
+
+Test Suite Overview:
+
+   Structure
+   - Selectors:
+   Defined CSS selectors for interacting with page elements, such as buttons, input fields, and navigation links.
+
+   - Reusable Functions:
+   Modularized functions like addFirstProductToCart() and goToCart() to enhance code reusability and readability.
+
+   - User Data:
+   Used test data such as first name, last name, email, and phone for checkout testing.
+
+
+Test Cases:
+
+   Each test case was written in Cypress using the describe() and it() functions.
+
+-------------------------------------------------------------------------------------------------
+
+   Test Case 1: Verifies Adding a Product to the Shopping Cart
+
+   Description: This test case checks if a product can be successfully added to the shopping cart.
+   Precondition: User is on the homepage, searching for a product (telephone).
+
+   Steps:
+
+   1. Click on the "Add to Cart" button on the first product in the grid.
+   2. Navigate to the cart.
+
+   Expected Result: The cart update buttons should exist, indicating that the product was added.
+   Execution Result: Pass
+
+-------------------------------------------------------------------------------------------------
+
+   Test Case 2: Verifies Removing a Product from the Shopping Cart
+
+   Description: This test case checks if a product can be removed from the shopping cart.
+   Precondition: User is on the homepage, searching for a product (telephone).
+
+   Steps:
+
+   1. Click on the "Add to Cart" button on the first product in the grid.
+   2. Navigate to the cart.
+   3. Click on the "decrease" button for the added product.
+
+   Expected Result: The cart should be empty (update buttons should not exist).
+   Execution Result: Pass
+
+-------------------------------------------------------------------------------------------------
+
+
+   Test Case 3: Verifies Updating the Quantity of a Product in the Shopping Cart
+
+   Description: This test case checks if the quantity of a product in the shopping cart can be updated.
+   Precondition: User is on the homepage, searching for a product (telephone).
+
+   Steps:
+
+   1. Click on the "Add to Cart" button on the first product in the grid.
+   2. Navigate to the cart.
+   3. Click on the "increase" button for the added product.
+   4. Verify that the updated quantity is displayed.
+
+   Expected Result: The quantity of a product should be 2.
+   Execution Result: Pass
+
+-------------------------------------------------------------------------------------------------
+
+
+   Test Case 4: Verifies Proceeding to the Checkout Page
+
+   Description: This test case checks if the checkout page can be accessed.
+   Precondition: User is on the homepage, searching for a product (telephone).
+
+   Steps:
+
+   1. Click on the "Add to Cart" button on the first product in the grid.
+   2. Navigate to the cart.
+   3. Click the checkout button.
+   4. Verify that the URL includes '/checkout', indicating the user is on the checkout page.
+
+   Expected Result: The URL should match the expected path.
+   Execution Result: Pass
+
+-------------------------------------------------------------------------------------------------
+
+
+   Test Case 5: Verifies Entering Payment Information and Completing the Purchase
+
+   Description: This test case checks if payment information can be entered and a purchase can be completed.
+   Precondition: User is on the homepage, searching for a product (telephone).
+
+   Steps:
+
+   1. Click on the "Add to Cart" button on the first product in the grid.
+   2. Navigate to the cart.
+   3. Click the checkout button.
+   4. Fill in user details (first name, last name, phone number, email).
+   5. Select an address and payment method.
+   6. Click to complete the order.
+   7. Verify that the order is successfully completed by checking the URL.
+
+   Expected Result: The URL should include the expected path.
+   Execution Result: Pass
+
+-------------------------------------------------------------------------------------------------
+
+
+   Test Case 6: Verifies Entering Payment Information and Failing the Purchase
+
+   Description: This test case checks if payment information can be entered but fails to complete the purchase.
+   Precondition: User is on the homepage, searching for a product (telephone).
+
+   Steps:
+
+   1. Click on the "Add to Cart" button on the first product in the grid.
+   2. Navigate to the cart.
+   3. Click the checkout button.
+   4. Fill in user details (first name, last name, phone number, email).
+   5. Click to complete the order.
+   6. Verify that the order is not successfully completed by checking the URL.
+
+   Expected Result: The URL should not match the expected path.
+   Execution Result: Pass
+
+-------------------------------------------------------------------------------------------------
+
+
+Execution Results
+| Test Case                              | Result            | Execution Time |
+|----------------------------------------|-------------------|----------------|
+| Add Product to Cart                    | ✅ Passed         | ~12 seconds    |
+| Remove Product from Cart               | ✅ Passed         | ~8.1 seconds   |
+| Update Quantity in Cart                | ✅ Passed         | ~6.2 seconds   |
+| Proceed to Checkout                    | ✅ Passed         | ~9.1 seconds   |
+| Complete Purchase                      | ✅ Passed         | ~13.6 seconds  |
+| Fail Purchase                          | ✅ Passed         | ~17.8 seconds  |
+
+- Total Tests: 6
+- Passed: 6
+- Failed: 0
+- Execution Time: ~1 minute 7.2 seconds
+
+
+Testing Process:
+
+   1. Setup Environment:
+      Cypress was installed and configured using npm install cypress. The project was initialized with a cypress.json file for custom configurations.
+
+   2. Test Development:
+      Each test case was written in a modular format, with reusable functions and selectors defined in the code for easy maintenance.
+
+   3. Execution:
+      Tests were executed in a headless browser using the following command:
+
+      npx cypress run 
+      
+      CYPRESS_VIDEO=false npx cypress run => If you don’t want to generate videos for every test run you can disable video recording locally by adding a CYPRESS_VIDEO=false environment variable.
+
+   4. Verification:
+      Each test case was verified by assertions on the DOM, such as checking the visibility of elements, changes in URL, and content of input fields.
+
+   5. Reporting:
+      Results were documented, and screenshots/videos were recorded for failed test cases (if any). Cypress automatically handles this feature.
+      After the test run complete video compressing to 32 CRF and saved to cypress\videos directory.
+
+
+Challenges and Solutions:
+
+   - Challenge: Some elements had dynamic classes, making them difficult to locate.
+   - Solution: Used partial class matching (e.g., class*="ProductCard_") for dynamic elements.
+
+
+Conclusion:
+
+   All test scenarios were successfully automated and validated. The test suite ensures that the shopping cart and checkout functionalities are robust and meet the expected behavior. 
+   The tests are reusable, maintainable, and ready for integration into a CI/CD pipeline.
+
+
+Next Steps:
+
+   1. Integrate the test suite with a CI/CD tool (e.g., GitHub Actions).
+   2. Enhance coverage by adding edge case scenarios (e.g., invalid user details, empty cart checkout).
+   3. Regularly update the test suite to accommodate UI or functional changes.
+
